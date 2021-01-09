@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <link rel="stylesheet"
+    th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
 </head>
 <body>
-
+  <div class="col-sm-5">
+    <div class="page-header">
+      <h1>User registration</h1>
+    </div>
+    <form method="post" th:action="@{/signup}">
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th class="active col-sm-3">user Id</th>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="active">password</th>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="active">user name</th>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="active">birthday</th>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control"
+                placeholder="yyyy/MM/dd" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="active">age</th>
+          <td>
+            <div class="form-group">
+              <input type="text" class="form-control" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="active">marriage</th>
+          <td>
+            <div class="form-group">
+              <div th:each="item: ${radioMarriage}">
+                <input type="radio" name="radioMarriage"
+                  th:text="${item.key}" th:value="${item.value}" />
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <button class="btn btn-primary" type="submit">create user</button>
+    </form>
+  </div>
 </body>
 </html>
