@@ -13,13 +13,13 @@
     <div class="page-header">
       <h1>User registration</h1>
     </div>
-    <form method="post" th:action="@{/signup}">
+    <form method="post" th:action="@{/signup}" th:object="${signupForm}">
       <table class="table table-bordered table-hover">
-        <tr>
-          <th class="active col-sm-3">user Id</th>
+        <tr class="col-sm-3">
+          <th class="active">user Id</th>
           <td>
             <div class="form-group">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" th:field="*{userId}" />
             </div>
           </td>
         </tr>
@@ -27,7 +27,7 @@
           <th class="active">password</th>
           <td>
             <div class="form-group">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" th:field="*{password}" />
             </div>
           </td>
         </tr>
@@ -35,7 +35,7 @@
           <th class="active">user name</th>
           <td>
             <div class="form-group">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" th:field="*{userName}" />
             </div>
           </td>
         </tr>
@@ -44,7 +44,7 @@
           <td>
             <div class="form-group">
               <input type="text" class="form-control"
-                placeholder="yyyy/MM/dd" />
+                placeholder="yyyy/MM/dd" th:field="*{birthday}" />
             </div>
           </td>
         </tr>
@@ -52,7 +52,7 @@
           <th class="active">age</th>
           <td>
             <div class="form-group">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" th:field="*{age}" />
             </div>
           </td>
         </tr>
@@ -62,12 +62,19 @@
             <div class="form-group">
               <div th:each="item: ${radioMarriage}">
                 <input type="radio" name="radioMarriage"
-                  th:text="${item.key}" th:value="${item.value}" />
+                  th:text="${item.key}" th:value="${item.value}" th:field="*{marriage}" />
               </div>
             </div>
           </td>
         </tr>
       </table>
+
+      <ul>
+        <li th:each="error: ${#fields.detailedErrors()}">
+          <span th:text="${error.message}">Error message</span>
+         </li>
+      </ul>
+
       <button class="btn btn-primary" type="submit">create user</button>
     </form>
   </div>
