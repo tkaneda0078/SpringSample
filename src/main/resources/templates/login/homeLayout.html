@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home</title>
+  <link rel="stylesheet"
+  th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/home.css}">
+  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+</head>
+<body class="text-center">
+  <h1>Home</h1>
+  <nav class="navbarnavbarinversenavbarfixedtop">
+    <div class="containerfluid">
+      <div class="navbarheader">
+        <a class="navbarbrand" href="#">SpringSample</a>
+      </div>
+      <form method="post" th:action="@{/logout}">
+        <button class="btnbtnlinkpullrightnavbarbrand" type="submit">
+          ログアウト</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="containerfluid">
+    <div class="row">
+      <div class="colsm2sidebar">
+        <ul class="navnavpillsnavstacked">
+          <li role="presentation"><a th:href="@{'/userList'}">ユーザ管理</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="containerfluid">
+    <div class="row">
+      <div class="colsm10colsmoffset2main">
+        <div th:include="__${contents}__"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
