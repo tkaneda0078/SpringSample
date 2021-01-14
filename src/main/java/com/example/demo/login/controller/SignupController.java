@@ -3,6 +3,7 @@ package com.example.demo.login.controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,9 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.login.domain.model.GroupOrder;
 import com.example.demo.login.domain.model.SignupForm;
+import com.example.demo.login.domain.model.User;
+import com.example.demo.login.domain.service.UserService;
 
 @Controller
 public class SignupController {
+	@Autowired
+	private UserService userService;
+
 	private Map<String, String> radioMarriage;
 
 	@GetMapping("/signup")
@@ -28,10 +34,24 @@ public class SignupController {
 	}
 
 	@PostMapping("/signup")
-	public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form, BindingResult bindingResult, Model model) {
+	public String postSignUp(@ModelAttribute @Validated(GroupOrder.class) SignupForm form,
+			BindingResult bindingResult,
+			Model model
+	) {
 		if (bindingResult.hasErrors()) {
 			return getSignUp(form, model);
 		}
+
+		User user = new User();
+		user.setUserId(form.getUserId());
+		user.setPassword(form.getPassword());
+		user.setUserName(form.getUserName());
+		user.setBirthday(form.getBirthday());
+		user.setAge(form.getAge());
+		user.setMarriage(form.isMarriage());
+		user.setRole("ROLE_GENERAL");
+
+		userService.create(user);
 
 		return "redirect:/login";
 	}
