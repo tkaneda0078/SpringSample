@@ -11,12 +11,12 @@
     </div>
     <table class="table table-bordered table-hover table-striped">
       <tr>
-        <th class="info col-sm2">ユーザID</th>
-        <th class="info col-sm2">ユーザ名</th>
-        <th class="info col-sm2">誕生日</th>
-        <th class="info col-sm2">年齢</th>
-        <th class="info col-sm2">結婚</th>
-        <th class="info col-sm2"></th>
+        <th class="info col-sm-2">ユーザID</th>
+        <th class="info col-sm-2">ユーザ名</th>
+        <th class="info col-sm-2">誕生日</th>
+        <th class="info col-sm-2">年齢</th>
+        <th class="info col-sm-2">結婚</th>
+        <th class="info col-sm-2"></th>
       </tr>
       <tr th:each="user:${userList}">
         <td th:text="${user.userId}"></td>

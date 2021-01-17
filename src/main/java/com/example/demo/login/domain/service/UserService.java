@@ -30,4 +30,8 @@ public class UserService {
 	public List<User> getAll() {
 		return dao.getAll();
 	}
+
+	public User getOne(String userId) {
+		return dao.getOne(userId);
+	}
 }
